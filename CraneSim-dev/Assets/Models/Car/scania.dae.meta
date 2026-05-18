@@ -1,0 +1,149 @@
+fileFormatVersion: 2
+guid: 90b63f54944d29748a9c22f5515f1b9e
+timeCreated: 1478335718
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: car
+    100002: //RootNode
+    100004: shaft
+    100006: trailer
+    100008: wheel1_L
+    100010: wheel1_R
+    100012: wheel2_L
+    100014: wheel2_R
+    100016: wheel3_L
+    100018: wheel3_R
+    100020: wheel4_L
+    100022: wheel4_R
+    100024: wheel5_L
+    100026: wheel5_R
+    100028: wheel6_L
+    100030: wheel6_R
+    400000: car
+    400002: //RootNode
+    400004: shaft
+    400006: trailer
+    400008: wheel1_L
+    400010: wheel1_R
+    400012: wheel2_L
+    400014: wheel2_R
+    400016: wheel3_L
+    400018: wheel3_R
+    400020: wheel4_L
+    400022: wheel4_R
+    400024: wheel5_L
+    400026: wheel5_R
+    400028: wheel6_L
+    400030: wheel6_R
+    2300000: car
+    2300002: shaft
+    2300004: trailer
+    2300006: wheel1_L
+    2300008: wheel1_R
+    2300010: wheel2_L
+    2300012: wheel2_R
+    2300014: wheel3_L
+    2300016: wheel3_R
+    2300018: wheel4_L
+    2300020: wheel4_R
+    2300022: wheel5_L
+    2300024: wheel5_R
+    2300026: wheel6_L
+    2300028: wheel6_R
+    3300000: car
+    3300002: shaft
+    3300004: trailer
+    3300006: wheel1_L
+    3300008: wheel1_R
+    3300010: wheel2_L
+    3300012: wheel2_R
+    3300014: wheel3_L
+    3300016: wheel3_R
+    3300018: wheel4_L
+    3300020: wheel4_R
+    3300022: wheel5_L
+    3300024: wheel5_R
+    3300026: wheel6_L
+    3300028: wheel6_R
+    4300000: wheel6_R
+    4300002: wheel5_R
+    4300004: wheel4_R
+    4300006: wheel6_L
+    4300008: wheel5_L
+    4300010: trailer
+    4300012: wheel4_L
+    4300014: wheel3_L
+    4300016: wheel2_L
+    4300018: wheel2_R
+    4300020: wheel1_R
+    4300022: wheel1_L
+    4300024: shaft
+    4300026: wheel3_R
+    4300028: car
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

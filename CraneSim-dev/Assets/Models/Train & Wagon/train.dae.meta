@@ -1,0 +1,129 @@
+fileFormatVersion: 2
+guid: f359e6291a0c14d3791ca444db736545
+timeCreated: 1478588509
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: train
+    100004: wagon
+    100006: wagon_01
+    100008: wagon_02
+    100010: wagon_03
+    100012: wagon_04
+    100014: wagon_05
+    100016: wagon_06
+    100018: wagon_07
+    100020: wagon_08
+    100022: wagon_09
+    400000: //RootNode
+    400002: train
+    400004: wagon
+    400006: wagon_01
+    400008: wagon_02
+    400010: wagon_03
+    400012: wagon_04
+    400014: wagon_05
+    400016: wagon_06
+    400018: wagon_07
+    400020: wagon_08
+    400022: wagon_09
+    2300000: train
+    2300002: wagon
+    2300004: wagon_01
+    2300006: wagon_02
+    2300008: wagon_03
+    2300010: wagon_04
+    2300012: wagon_05
+    2300014: wagon_06
+    2300016: wagon_07
+    2300018: wagon_08
+    2300020: wagon_09
+    3300000: train
+    3300002: wagon
+    3300004: wagon_01
+    3300006: wagon_02
+    3300008: wagon_03
+    3300010: wagon_04
+    3300012: wagon_05
+    3300014: wagon_06
+    3300016: wagon_07
+    3300018: wagon_08
+    3300020: wagon_09
+    4300000: wagon
+    4300002: wagon_01
+    4300004: wagon_03
+    4300006: wagon_02
+    4300008: wagon_04
+    4300010: wagon_05
+    4300012: wagon_06
+    4300014: wagon_08
+    4300016: wagon_07
+    4300018: wagon_09
+    4300020: train
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

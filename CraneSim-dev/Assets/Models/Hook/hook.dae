@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.72.0 commit date:2014-10-21, commit time:11:38, hash:9e963ae</authoring_tool>
+    </contributor>
+    <created>2015-10-30T14:09:14</created>
+    <modified>2015-10-30T14:09:14</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="black_mat-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0 0 0 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">1 1 1 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="hook_mat-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.5 0.5 0 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">1 1 1 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="black_mat-material" name="black_mat">
+      <instance_effect url="#black_mat-effect"/>
+    </material>
+    <material id="hook_mat-material" name="hook_mat">
+      <instance_effect url="#hook_mat-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="HookMesh-mesh" name="HookMesh">
+      <mesh>
+        <source id="HookMesh-mesh-positions">
+          <float_array id="HookMesh-mesh-positions-array" count="144">0.106869 0.3178844 -0.05011045 -0.07516574 -0.02554804 -0.05011045 -0.1635462 0.1960298 0.05011045 -0.07516574 -0.02554804 0.05011045 -0.1068691 0.3178844 0.05011051 -0.1635462 0.1960298 -0.05011045 0.07516568 -0.02554804 -0.05011045 0.07516568 -0.02554804 0.05011045 -0.1068691 0.3178844 -0.05011045 0.1635462 0.1960298 0.05011045 0.1635462 0.1960298 -0.05011045 0.106869 0.3178844 0.05011051 0.08009946 -0.2951527 -0.01909989 -0.1056208 -0.2563298 -0.01909989 -0.1197709 -0.215497 -0.01909989 0.01154345 -0.2214084 -0.01909989 0.01805901 -0.1166549 -0.01909989 -0.09837102 -0.1174653 -0.01909989 -0.07630944 -0.1407247 -0.01909989 -0.03103244 -0.2268602 -0.01909989 0.111018 -0.1079541 -0.01909983 0.1365263 -0.1729403 -0.01909989 0.1251498 -0.2418203 -0.01909989 0.01409077 -0.3178845 -0.01909989 0.04678708 -0.02554941 -0.01909983 -0.0573194 -0.2075025 -0.01909989 -0.1197006 -0.1271058 -0.01909989 -0.04555052 -0.0255472 -0.01909983 0.03568857 -0.1708942 -0.01909989 -0.05424523 -0.3035995 -0.01909989 0.08009946 -0.2951527 0.01872617 -0.1056208 -0.2563298 0.01872617 -0.1197709 -0.215497 0.01872617 0.01154345 -0.2214084 0.01872617 0.01805901 -0.1166549 0.01872617 -0.09837102 -0.1174653 0.01872617 -0.07630944 -0.1407247 0.01872617 -0.03103244 -0.2268602 0.01872617 0.111018 -0.1079541 0.01872622 0.1365263 -0.1729403 0.01872617 0.1251498 -0.2418203 0.01872617 0.01409077 -0.3178845 0.01872617 0.04678708 -0.02554941 0.01872622 -0.0573194 -0.2075025 0.01872617 -0.1197006 -0.1271058 0.01872617 -0.04555052 -0.0255472 0.01872622 0.03568857 -0.1708942 0.01872617 -0.05424523 -0.3035995 0.01872617</float_array>
+          <technique_common>
+            <accessor source="#HookMesh-mesh-positions-array" count="48" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="HookMesh-mesh-normals">
+          <float_array id="HookMesh-mesh-normals-array" count="264">0 0 -1 0 0 1 -0.9067193 0.4217347 0 0 1 0 0 0 -1 -0.9288386 -0.3704847 0 0 -1 0 0.9288386 -0.3704847 0 0.9067193 0.4217346 0 0 0 -1 0 0 -1 0 0 -1 0 0 1 0 0 -1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 -1 -0.6993622 -0.4882656 -0.5219581 -0.6003601 -0.2988678 -0.7417524 -0.6003601 -0.2988678 0.7417524 -0.3467513 -0.674337 -0.6519059 0.04757833 -0.7567675 -0.6519059 0.04757833 -0.7567675 0.6519059 -0.6700339 0.4328135 -0.6030458 -0.7307657 -0.1227149 -0.6714683 -0.7307657 -0.1227149 0.6714683 0.6884365 -0.3178502 -0.6519059 0.6884365 -0.3178502 0.6519059 0.4284799 -0.6255989 0.6519059 -0.6311533 -0.41377 -0.6560259 -0.6311533 -0.41377 0.6560259 -0.5975219 0.03933835 -0.8008667 -0.3249916 0.4493851 -0.8320872 -0.3249916 0.4493851 0.8320872 0.6548662 0.3732109 -0.6571245 0.6548662 0.3732109 0.6571245 0.5061495 0.3511765 0.7876827 -0.5975219 0.03933835 0.8008667 -0.3467513 -0.674337 0.6519059 0.6400342 0.3648183 -0.6761681 0.6400342 0.3648183 0.6761681 0.7540819 0.07959222 0.6519059 0.4284799 -0.6255989 -0.6519059 0.1543931 0.787225 -0.5970031 -0.6700339 0.4328135 0.6030458 0.4537797 0.3537095 -0.8178656 0.4537797 0.3537095 0.8178656 0.1501815 0.5793024 -0.8011109 0.1501815 0.5793024 0.8011109 0.1543931 0.787225 0.5970031 0.7540819 0.07959222 -0.6519059 0.5061495 0.3511765 -0.7876827 0 0 -1 0 0 1 0 0 -1 0 0 -1 -0.9067193 0.4217347 0 0 0 1 0 0 1 0 1 0 0 0 -1 0 0 -1 -0.9288386 -0.3704847 0 0 0 -1 0 -1 0 0.9288387 -0.3704847 0 0.9067193 0.4217346 0 0 0 -1 0 0 -1 0 0 -1 0 0 1 0 0 1 0 0 1 0 0 -1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 -1 0 0 -1 0 0 -1 -0.6993622 -0.4882656 0.5219581</float_array>
+          <technique_common>
+            <accessor source="#HookMesh-mesh-normals-array" count="88" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="HookMesh-mesh-vertices">
+          <input semantic="POSITION" source="#HookMesh-mesh-positions"/>
+        </vertices>
+        <polylist material="black_mat-material" count="66">
+          <input semantic="VERTEX" source="#HookMesh-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#HookMesh-mesh-normals" offset="1"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>15 4 22 4 12 4 16 9 27 9 24 9 20 10 21 10 28 10 22 11 15 11 28 11 41 12 33 12 37 12 19 13 29 13 13 13 34 14 38 14 42 14 38 15 34 15 46 15 40 16 39 16 46 16 32 17 31 17 43 17 31 18 47 18 37 18 14 19 18 19 25 19 27 20 16 21 34 22 29 23 23 24 41 25 26 26 14 27 32 28 22 29 40 30 30 31 14 27 13 32 31 33 28 34 15 35 33 36 18 37 36 38 43 39 16 21 28 34 46 40 13 32 29 23 47 41 20 42 38 43 39 44 12 45 30 31 41 25 17 46 26 26 44 47 20 42 24 48 42 49 15 35 19 50 37 51 17 46 35 52 36 38 21 53 39 44 40 30 25 54 43 39 37 51 23 63 29 63 19 63 23 64 15 64 12 64 23 66 19 66 15 66 20 70 16 70 24 70 16 71 20 71 28 71 21 72 22 72 28 72 30 73 33 73 41 73 47 74 41 74 37 74 30 75 40 75 33 75 25 76 19 76 13 76 45 77 34 77 42 77 39 78 38 78 46 78 33 79 40 79 46 79 43 80 31 80 37 80 36 81 35 81 44 81 36 82 32 82 43 82 36 83 44 83 32 83 13 84 14 84 25 84 26 85 17 85 18 85 26 86 18 86 14 86 45 87 27 20 34 22 47 41 29 23 41 25 44 47 26 26 32 28 12 45 22 29 30 31 32 28 14 27 31 33 46 40 28 34 33 36 25 54 18 37 43 39 34 22 16 21 46 40 31 33 13 32 47 41 21 53 20 42 39 44 23 24 12 45 41 25 35 52 17 46 44 47 38 43 20 42 42 49 33 36 15 35 37 51 18 37 17 46 36 38 22 29 21 53 40 30 19 50 25 54 37 51</p>
+        </polylist>
+        <polylist material="hook_mat-material" count="20">
+          <input semantic="VERTEX" source="#HookMesh-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#HookMesh-mesh-normals" offset="1"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>5 0 8 0 0 0 9 1 11 1 4 1 2 2 4 2 8 2 0 3 8 3 4 3 3 5 2 5 5 5 3 6 1 6 6 6 7 7 6 7 10 7 9 8 10 8 0 8 10 55 5 55 0 55 2 56 9 56 4 56 10 57 6 57 1 57 10 58 1 58 5 58 5 59 2 59 8 59 2 60 3 60 7 60 2 61 7 61 9 61 11 62 0 62 4 62 1 65 3 65 5 65 7 67 3 67 6 67 9 68 7 68 10 68 11 69 9 69 0 69</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Hook" name="Hook" type="NODE">
+        <matrix sid="transform">1 0 0 0.7507263 0 1 0 0.1796879 0 0 1 1.762567 0 0 0 1</matrix>
+        <instance_geometry url="#HookMesh-mesh">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="black_mat-material" target="#black_mat-material"/>
+              <instance_material symbol="hook_mat-material" target="#hook_mat-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

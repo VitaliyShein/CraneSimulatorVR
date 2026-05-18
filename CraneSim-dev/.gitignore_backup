@@ -1,0 +1,16 @@
+.collabignore
+CraneSim.csproj
+CraneSim.sln
+Assembly-CSharp-Editor-firstpass.csproj
+Assembly-CSharp-Editor.csproj
+Assembly-CSharp.csproj
+obj/
+.vs/
+.idea/
+Temp/
+UnityPackageManager/
+Library/
+Builds/
+CraneSim.sln.DotSettings.user
+.vsconfig
+Logs/

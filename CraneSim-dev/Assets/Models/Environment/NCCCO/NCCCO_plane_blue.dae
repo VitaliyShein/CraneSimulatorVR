@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.79.0 commit date:2018-03-22, commit time:14:10, hash:f4dc9f9d68b</authoring_tool>
+    </contributor>
+    <created>2018-12-10T18:00:50</created>
+    <modified>2018-12-10T18:00:50</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="NCCCO_base_base_color-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="NCCCO_circle_blue-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.01212446 0.008517418 0.2590962 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="NCCCO_base_base_color-material" name="NCCCO_base_base_color">
+      <instance_effect url="#NCCCO_base_base_color-effect"/>
+    </material>
+    <material id="NCCCO_circle_blue-material" name="NCCCO_circle_blue">
+      <instance_effect url="#NCCCO_circle_blue-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Plane-mesh" name="Plane">
+      <mesh>
+        <source id="Plane-mesh-positions">
+          <float_array id="Plane-mesh-positions-array" count="216">-1 -1 0 1 -1 0 -1 1 0 1 1 0 -1 -1 0.04999995 1 -1 0.04999995 -1 1 0.04999995 1 1 0.04999995 0 0.8626338 0.05107069 0.1682915 0.8460585 0.05107069 0.7969697 0.3301156 0.05107069 0.7172538 0.4792536 0.05107069 0.4792537 0.7172538 0.05107069 0.6099742 0.6099742 0.05107069 0.6099742 -0.6099742 0.05107069 -0.4389962 0.6570068 0.05107069 -0.3023856 0.7300264 0.05107069 -0.1541548 0.7749907 0.05107069 -0.5587381 0.5587381 0.05107069 0 0.7901725 0.05107069 0.730026 -0.3023867 0.05107069 0.6570062 -0.4389972 0.05107069 0.1541562 0.7749904 0.05107069 0.7749905 -0.154156 0.05107069 0.3023868 0.7300259 0.05107069 0.3301157 0.7969697 0.05107069 0.7172538 -0.4792536 0.05107069 0.8460585 0.1682915 0.05107069 0.7969697 -0.3301155 0.05107069 0.5587381 0.5587381 0.05107069 0.4389972 0.6570061 0.05107069 0.6570062 0.4389972 0.05107069 -0.1682901 0.8460587 0.05107069 -0.6099742 0.6099742 0.05107069 -0.4792526 0.7172544 0.05107069 -0.3301145 0.7969702 0.05107069 0.5587381 -0.5587381 0.05107069 0.8460586 -0.1682914 0.05107069 0.8626338 0 0.05107069 0.7901725 0 0.05107069 0.7749904 0.1541562 0.05107069 0.7300259 0.3023868 0.05107069 -0.6099746 -0.6099738 0.05107069 -0.7172541 -0.4792531 0.05107069 -0.330116 -0.7969695 0.05107069 -0.4792541 -0.7172535 0.05107069 -0.79697 -0.330115 0.05107069 -0.8460586 -0.1682907 0.05107069 -0.1682918 -0.8460584 0.05107069 -2.81082e-7 -0.8626338 0.05107069 -0.8626338 8.32958e-7 0.05107069 0.1682913 -0.8460586 0.05107069 0.3301155 -0.7969698 0.05107069 0.4792536 -0.7172538 0.05107069 -0.7901747 8.32958e-7 0.05107069 -0.7749903 0.1541571 0.05107069 -0.7300255 0.3023877 0.05107069 -0.1541565 -0.7749904 0.05107069 -2.81082e-7 -0.7901747 0.05107069 -0.5587384 -0.5587377 0.05107069 -0.4389975 -0.6570059 0.05107069 -0.3023871 -0.7300257 0.05107069 -0.6570056 0.4389981 0.05107069 -0.7749906 -0.1541554 0.05107069 -0.7300262 -0.3023861 0.05107069 -0.6570065 -0.4389966 0.05107069 0.3023867 -0.730026 0.05107069 0.4389972 -0.6570062 0.05107069 0.1541559 -0.7749905 0.05107069 -0.8460583 0.1682924 0.05107069 -0.7969693 0.3301165 0.05107069 -0.7172532 0.4792545 0.05107069</float_array>
+          <technique_common>
+            <accessor source="#Plane-mesh-positions-array" count="72" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane-mesh-normals">
+          <float_array id="Plane-mesh-normals-array" count="126">0 0 -1 0 0 1 1 0 0 -1 0 0 0 1 0 0 -1 0 0 0 1 0 0 1 0 0 1 0 0 1 -1.52747e-7 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 1.47244e-7 1 0 0 1 0 0 1 1.66757e-7 1.36703e-7 1 0 -1.36702e-7 1 0 0 1 0 0 1 0 0 1 0 -1.47243e-7 1 0 0 1 0 0 1 1.90934e-7 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 -2.50133e-7 -1.36702e-7 1 0 0 1 1.66755e-7 1.36702e-7 1 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Plane-mesh-normals-array" count="42" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plane-mesh-vertices">
+          <input semantic="POSITION" source="#Plane-mesh-positions"/>
+        </vertices>
+        <triangles material="NCCCO_base_base_color-material" count="12">
+          <input semantic="VERTEX" source="#Plane-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plane-mesh-normals" offset="1"/>
+          <p>2 0 1 0 0 0 5 1 6 1 4 1 3 2 5 2 1 2 0 3 6 3 2 3 2 4 7 4 3 4 1 5 4 5 0 5 2 0 3 0 1 0 5 1 7 1 6 1 3 2 7 2 5 2 0 3 4 3 6 3 2 4 6 4 7 4 1 5 5 5 4 5</p>
+        </triangles>
+        <triangles material="NCCCO_circle_blue-material" count="64">
+          <input semantic="VERTEX" source="#Plane-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plane-mesh-normals" offset="1"/>
+          <p>8 6 19 6 22 6 58 7 57 7 49 7 38 8 27 8 40 8 27 9 10 9 41 9 10 1 11 1 41 1 11 10 13 10 31 10 41 11 11 11 31 11 13 12 12 12 30 12 12 13 25 13 24 13 25 1 9 1 24 1 9 1 8 1 22 1 24 1 9 1 22 1 8 1 32 1 17 1 32 1 35 1 16 1 35 14 34 14 16 14 34 15 33 15 15 15 16 1 34 1 15 1 33 16 71 16 62 16 71 17 70 17 56 17 70 1 69 1 56 1 69 1 50 1 55 1 56 18 69 18 55 18 50 1 54 1 55 1 71 1 56 1 62 1 32 1 16 1 17 1 12 1 24 1 30 1 27 1 41 1 40 1 40 1 39 1 38 1 33 19 62 19 18 19 33 20 18 20 15 20 29 1 31 1 13 1 30 21 29 21 13 21 8 22 17 22 19 22 38 1 39 1 23 1 38 23 23 23 37 23 23 1 20 1 37 1 28 1 37 1 20 1 14 24 26 24 21 24 26 25 28 25 20 25 52 26 53 26 66 26 53 27 14 27 67 27 66 1 53 1 67 1 49 28 51 28 68 28 51 29 52 29 66 29 44 1 48 1 61 1 48 1 49 1 57 1 61 30 48 30 57 30 42 31 45 31 60 31 45 1 44 1 61 1 46 1 43 1 64 1 43 1 42 1 65 1 64 32 43 32 65 32 50 33 47 33 63 33 47 34 46 34 64 34 63 1 54 1 50 1 64 35 63 35 47 35 45 1 61 1 60 1 51 36 66 36 68 36 26 37 20 37 21 37 14 38 21 38 36 38 59 1 65 1 42 1 60 39 59 39 42 39 14 40 36 40 67 40 49 41 68 41 58 41</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Plane" name="Plane" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Plane-mesh" name="Plane">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="NCCCO_base_base_color-material" target="#NCCCO_base_base_color-material"/>
+              <instance_material symbol="NCCCO_circle_blue-material" target="#NCCCO_circle_blue-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

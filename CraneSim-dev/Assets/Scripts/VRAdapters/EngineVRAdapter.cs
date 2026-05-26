@@ -15,7 +15,7 @@ public class VRAdapter : MonoBehaviour
 
     [Tooltip("Мертвая зона вокруг нуля в процентах (0.0 - 1.0), чтобы рычаг не дергался по центру")]
     [Range(0f, 0.3f)]
-    public float deadZone = 0.1f;
+    public float deadZone = 0.2f;
 
     private enum LeverAxis { X, Y, Z }
     [SerializeField]
@@ -41,12 +41,13 @@ public class VRAdapter : MonoBehaviour
         }
 
         // 4. Масштабируем значение под количество передач крана вперед/назад
-        if (normalizedValue > 0)
+        if (normalizedValue < 0)
         {
             // Рычаг отклонен вперед. Интерполируем между 1 и максимальной передней передачей
             craneEngine.gearNow = Mathf.RoundToInt(Mathf.Lerp(1, craneEngine.gearsForward, normalizedValue));
         }
-        else
+
+        if (normalizedValue > 0)
         {
             // Рычаг отклонен назад. Интерполируем между -1 и максимальной задней передачей
             // Значение normalizedValue здесь отрицательное, поэтому используем Mathf.Abs

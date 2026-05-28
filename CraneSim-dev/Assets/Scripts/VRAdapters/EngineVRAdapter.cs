@@ -1,68 +1,204 @@
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class VRAdapter : MonoBehaviour
 {
-    [Header("Связанные компоненты")]
-    [Tooltip("Ссылка на скрипт Engine конкретного механизма крана")]
+    [Header("РЎРІСЏР·Р°РЅРЅС‹Рµ РєРѕРјРїРѕРЅРµРЅС‚С‹")]
     public Engine craneEngine;
-
-    [Tooltip("Трансформ 3D-модели рычага в кабине, который крутит игрок в VR")]
     public Transform vrLeverTransform;
+    public XRBaseControllerInteractor controllerInteractor;
+    public XRGrabInteractable leverGrabInteractable;
 
-    [Header("Настройки углов рычага")]
-    [Tooltip("Максимальный угол отклонения рычага в градусах от центральной точки (например, 45)")]
-    public float maxLeverAngle = 45f;
+    [Header("РќР°СЃС‚СЂРѕР№РєРё СѓРіР»РѕРІ СЂС‹С‡Р°РіР°")]
+    [Tooltip("РњРёРЅРёРјР°Р»СЊРЅС‹Р№ СѓРіРѕР» СЂС‹С‡Р°РіР° (РЅР°РїСЂРёРјРµСЂ, -135)")]
+    public float minAngle = -135f;
+    
+    [Tooltip("РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СѓРіРѕР» СЂС‹С‡Р°РіР° (РЅР°РїСЂРёРјРµСЂ, -45)")]
+    public float maxAngle = -45f;
+    
+    [Tooltip("РњС‘СЂС‚РІР°СЏ Р·РѕРЅР° РІ РіСЂР°РґСѓСЃР°С… РІРѕРєСЂСѓРі РЅРµР№С‚СЂР°Р»Рё")]
+    public float deadZoneDegrees = 5f;
+    
+    [Tooltip("РРЅРІРµСЂС‚РёСЂРѕРІР°С‚СЊ РЅР°РїСЂР°РІР»РµРЅРёРµ")]
+    public bool invertDirection = false;
 
-    [Tooltip("Мертвая зона вокруг нуля в процентах (0.0 - 1.0), чтобы рычаг не дергался по центру")]
-    [Range(0f, 0.3f)]
-    public float deadZone = 0.2f;
+    [Header("РќР°СЃС‚СЂРѕР№РєРё РІРёР±СЂР°С†РёРё")]
+    public float hapticAmplitude = 0.5f;
+    public float hapticDuration = 0.1f;
+    public float hapticCooldown = 0.2f;
+
+    [Header("РћС‚Р»Р°РґРєР°")]
+    public bool debugMode = false;
 
     private enum LeverAxis { X, Y, Z }
     [SerializeField]
-    [Tooltip("Ось локального вращения 3D-модели рычага для отслеживания наклона")]
     private LeverAxis trackingAxis = LeverAxis.X;
+
+    private int lastGear = 0;
+    private float lastHapticTime = -1f;
+    private bool isGrabbed = false;
+    private float lastControlledAngle = 0f;
+    private bool hasControlledAngle = false;
+    
+    // РќРµР№С‚СЂР°Р»СЊРЅРѕРµ РїРѕР»РѕР¶РµРЅРёРµ СЂС‹С‡Р°РіР° (СЃРµСЂРµРґРёРЅР° РґРёР°РїР°Р·РѕРЅР°)
+    private float neutralAngle;
+
+    void Start()
+    {
+        if (craneEngine != null)
+            lastGear = craneEngine.gearNow;
+
+        // Р’С‹С‡РёСЃР»СЏРµРј РЅРµР№С‚СЂР°Р»СЊРЅРѕРµ РїРѕР»РѕР¶РµРЅРёРµ (СЃРµСЂРµРґРёРЅР° РґРёР°РїР°Р·РѕРЅР°)
+        neutralAngle = (minAngle + maxAngle) / 2f;
+        
+        if (debugMode)
+            Debug.Log($"[VRAdapter] Р”РёР°РїР°Р·РѕРЅ: {minAngle}В° РґРѕ {maxAngle}В°, РЅРµР№С‚СЂР°Р»СЊ: {neutralAngle}В°");
+
+        if (leverGrabInteractable != null)
+        {
+            leverGrabInteractable.selectEntered.AddListener(OnLeverGrabbed);
+            leverGrabInteractable.selectExited.AddListener(OnLeverReleased);
+        }
+    }
+
+    void OnLeverGrabbed(SelectEnterEventArgs args)
+    {
+        isGrabbed = true;
+        if (debugMode) Debug.Log("[VRAdapter] Р С‹С‡Р°Рі Р·Р°С…РІР°С‡РµРЅ");
+    }
+
+    void OnLeverReleased(SelectExitEventArgs args)
+    {
+        isGrabbed = false;
+        if (debugMode) Debug.Log("[VRAdapter] Р С‹С‡Р°Рі РѕС‚РїСѓС‰РµРЅ, СѓРіРѕР» Р·Р°С„РёРєСЃРёСЂРѕРІР°РЅ: " + lastControlledAngle);
+    }
 
     void Update()
     {
         if (craneEngine == null || vrLeverTransform == null) return;
 
-        // 1. Получаем локальный угол поворота рычага
         float currentAngle = GetLocalLeverAngle();
+        float angleForControl;
 
-        // 2. Нормализуем угол в диапазон от -1.0 до 1.0
-        float normalizedValue = currentAngle / maxLeverAngle;
-        normalizedValue = Mathf.Clamp(normalizedValue, -1f, 1f);
-
-        // 3. Применяем мертвую зону для фиксации нейтральной передачи (0)
-        if (Mathf.Abs(normalizedValue) < deadZone)
+        if (isGrabbed)
         {
-            craneEngine.gearNow = 0;
+            angleForControl = currentAngle;
+            lastControlledAngle = angleForControl;
+            hasControlledAngle = true;
+        }
+        else if (hasControlledAngle)
+        {
+            angleForControl = lastControlledAngle;
+        }
+        else
+        {
             return;
         }
 
-        // 4. Масштабируем значение под количество передач крана вперед/назад
-        if (normalizedValue < 0)
+        UpdateGearFromAngle(angleForControl);
+    }
+
+    void UpdateGearFromAngle(float angle)
+    {
+        // РЁРђР“ 1: Р’С‹С‡РёСЃР»СЏРµРј РѕС‚РєР»РѕРЅРµРЅРёРµ РѕС‚ РЅРµР№С‚СЂР°Р»Рё (-90В°)
+        if (debugMode) Debug.Log($"angle = {angle}");
+        float deviation = angle - neutralAngle;
+        
+        // РЁРђР“ 2: РќРѕСЂРјР°Р»РёР·СѓРµРј РѕС‚РєР»РѕРЅРµРЅРёРµ РІ РґРёР°РїР°Р·РѕРЅ [-1, 1]
+        // РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РѕС‚РєР»РѕРЅРµРЅРёРµ РІ РєР°Р¶РґСѓСЋ СЃС‚РѕСЂРѕРЅСѓ
+        float maxDeviation = Mathf.Max(Mathf.Abs(minAngle - neutralAngle), Mathf.Abs(maxAngle - neutralAngle));
+        float normalizedValue = deviation / maxDeviation;
+        normalizedValue = Mathf.Clamp(normalizedValue, -1f, 1f);
+        
+        // РЁРђР“ 3: РџСЂРѕРІРµСЂСЏРµРј deadZone (РІ РіСЂР°РґСѓСЃР°С…)
+        if (Mathf.Abs(deviation) < deadZoneDegrees)
         {
-            // Рычаг отклонен вперед. Интерполируем между 1 и максимальной передней передачей
-            craneEngine.gearNow = Mathf.RoundToInt(Mathf.Lerp(1, craneEngine.gearsForward, normalizedValue));
+            if (craneEngine.gearNow != 0)
+            {
+                if (debugMode) Debug.Log($"[VRAdapter] DeadZone: СѓРіРѕР»={angle:F1}В°, РѕС‚РєР»РѕРЅРµРЅРёРµ={deviation:F1}В° < {deadZoneDegrees}В° в†’ РЅРµР№С‚СЂР°Р»СЊ");
+                SetGear(0);
+            }
+            return;
+        }
+        
+        // РЁРђР“ 4: РџСЂРёРјРµРЅСЏРµРј РёРЅРІРµСЂСЃРёСЋ (РѕРїС†РёРѕРЅР°Р»СЊРЅРѕ)
+        if (invertDirection)
+        {
+            normalizedValue = -normalizedValue;
+        }
+        
+        // РЁРђР“ 5: Р’С‹С‡РёСЃР»СЏРµРј РїРµСЂРµРґР°С‡Сѓ
+        int newGear = CalculateGearFromNormalized(normalizedValue);
+        newGear = Mathf.Clamp(newGear, craneEngine.gearsBackward, craneEngine.gearsForward);
+
+        if (debugMode && newGear != craneEngine.gearNow)
+        {
+            Debug.Log($"[VRAdapter] РЈРіРѕР»={angle:F1}В° (РѕС‚РєР»РѕРЅРµРЅРёРµ={deviation:F1}В°) в†’ РЅРѕСЂРј={normalizedValue:F2} в†’ РїРµСЂРµРґР°С‡Р°={newGear}");
         }
 
-        if (normalizedValue > 0)
+        SetGear(newGear);
+    }
+
+    private int CalculateGearFromNormalized(float value)
+    {
+        if (value > 0)
         {
-            // Рычаг отклонен назад. Интерполируем между -1 и максимальной задней передачей
-            // Значение normalizedValue здесь отрицательное, поэтому используем Mathf.Abs
-            craneEngine.gearNow = Mathf.RoundToInt(Mathf.Lerp(-1, craneEngine.gearsBackward, Mathf.Abs(normalizedValue)));
+            // Р”РІРёР¶РµРЅРёРµ РІ РѕРґРЅСѓ СЃС‚РѕСЂРѕРЅСѓ (РЅР°РїСЂРёРјРµСЂ, РІРїРµСЂС‘Рґ)
+            float t = Mathf.Clamp01(value);
+
+            if (t >= 0.9f) return craneEngine.gearsForward;
+            if (t >= 0.6f) return Mathf.Max(1, craneEngine.gearsForward - 1);
+            if (t >= 0.3f) return 1;
+            return 0;
+        }
+        else if (value < 0)
+        {
+            // Р”РІРёР¶РµРЅРёРµ РІ РґСЂСѓРіСѓСЋ СЃС‚РѕСЂРѕРЅСѓ (РЅР°РїСЂРёРјРµСЂ, РЅР°Р·Р°Рґ)
+            float t = Mathf.Clamp01(-value);
+            int maxBackAbs = Mathf.Abs(craneEngine.gearsBackward);
+
+            if (t >= 0.9f) return -maxBackAbs;
+            if (t >= 0.6f) return -Mathf.Max(1, maxBackAbs - 1);
+            if (t >= 0.3f) return -1;
+            return 0;
+        }
+
+        return 0;
+    }
+
+    void SetGear(int newGear)
+    {
+        if (craneEngine.gearNow == newGear) return;
+
+        int oldGear = craneEngine.gearNow;
+        craneEngine.gearNow = newGear;
+        TriggerHapticFeedback(oldGear, newGear);
+
+        if (debugMode)
+        {
+            Debug.Log($"[VRAdapter] РџРµСЂРµРґР°С‡Р°: {oldGear} в†’ {newGear}");
         }
     }
 
-    /// <summary>
-    /// Возвращает угол наклона рычага в диапазоне от -180 до 180 градусов
-    /// </summary>
+    void TriggerHapticFeedback(int oldGear, int newGear)
+    {
+        if (Time.time - lastHapticTime < hapticCooldown) return;
+        if (controllerInteractor == null) return;
+
+        var xrController = controllerInteractor.xrController;
+        if (xrController == null) return;
+
+        float gearDelta = Mathf.Abs(newGear - oldGear);
+        float dynamicAmplitude = Mathf.Clamp(hapticAmplitude * (0.5f + gearDelta * 0.25f), 0.2f, 1f);
+
+        xrController.SendHapticImpulse(dynamicAmplitude, hapticDuration);
+        lastHapticTime = Time.time;
+    }
+
     private float GetLocalLeverAngle()
     {
         float rawAngle = 0f;
 
-        // Считываем углы Эйлера в зависимости от того, как сориентирована модель рычага
         switch (trackingAxis)
         {
             case LeverAxis.X: rawAngle = vrLeverTransform.localEulerAngles.x; break;
@@ -70,9 +206,24 @@ public class VRAdapter : MonoBehaviour
             case LeverAxis.Z: rawAngle = vrLeverTransform.localEulerAngles.z; break;
         }
 
-        // Переводим из формата 0..360 в формат -180..180 для правильного определения направления наклона
         if (rawAngle > 180f) rawAngle -= 360f;
-
         return rawAngle;
+    }
+
+    public void EmergencyStop()
+    {
+        lastControlledAngle = neutralAngle;
+        hasControlledAngle = true;
+        SetGear(0);
+        Debug.Log("[VRAdapter] РђРІР°СЂРёР№РЅР°СЏ РѕСЃС‚Р°РЅРѕРІРєР°");
+    }
+
+    void OnDestroy()
+    {
+        if (leverGrabInteractable != null)
+        {
+            leverGrabInteractable.selectEntered.RemoveListener(OnLeverGrabbed);
+            leverGrabInteractable.selectExited.RemoveListener(OnLeverReleased);
+        }
     }
 }

@@ -12548,7 +12548,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187026, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
@@ -16470,7 +16470,7 @@ MonoBehaviour:
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -30879,9 +30879,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   craneEngine: {fileID: 2835506775152467267}
   vrLeverTransform: {fileID: 722722122}
-  maxLeverAngle: 45
-  deadZone: 0.3
-  trackingAxis: 0
+  controllerInteractor: {fileID: 1205309102}
+  leverGrabInteractable: {fileID: 722722133}
+  minAngle: -90
+  maxAngle: -45
+  deadZoneDegrees: 5
+  invertDirection: 0
+  hapticAmplitude: 0.5
+  hapticDuration: 0.1
+  hapticCooldown: 0.2
+  debugMode: 1
+  trackingAxis: 1
 --- !u!4 &1439517980 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: dbcf59b056832aa4b8c1a7a8b8f012c5,
@@ -32116,7 +32124,7 @@ MonoBehaviour:
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -33448,7 +33456,7 @@ MonoBehaviour:
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -43840,7 +43848,7 @@ MonoBehaviour:
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2

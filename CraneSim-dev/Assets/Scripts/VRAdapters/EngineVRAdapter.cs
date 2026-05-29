@@ -43,6 +43,13 @@ public class VRAdapter : MonoBehaviour
     // Нейтральное положение рычага (середина диапазона)
     private float neutralAngle;
 
+    [Header("Дополнительная фильтрация")]
+    [Tooltip("Плавность изменения угла для устранения дрожания")]
+    public float angleSmoothSpeed = 10f;
+    private float smoothedAngle;
+    // Добавим скрытый флаг, чтобы убрать лишний вес в Update
+    private bool wasGrabbedLastFrame = false;
+    
     void Start()
     {
         if (craneEngine != null)
@@ -73,35 +80,52 @@ public class VRAdapter : MonoBehaviour
         if (debugMode) Debug.Log("[VRAdapter] Рычаг отпущен, угол зафиксирован: " + lastControlledAngle);
     }
 
+ 
+
     void Update()
     {
+        // Оставляем только одну быструю валидацию
         if (craneEngine == null || vrLeverTransform == null) return;
-
-        float currentAngle = GetLocalLeverAngle();
-        float angleForControl;
 
         if (isGrabbed)
         {
-            angleForControl = currentAngle;
-            lastControlledAngle = angleForControl;
-            hasControlledAngle = true;
-        }
-        else if (hasControlledAngle)
-        {
-            angleForControl = lastControlledAngle;
+            float currentAngle = GetLocalLeverAngle();
+
+            // ОПТИМИЗАЦИЯ 1: Мгновенно телепортируем smoothedAngle к первому кадру захвата.
+            // Без этого рычаг при взятии будет плавно догонять руку из старого нейтрального положения.
+            if (!wasGrabbedLastFrame)
+            {
+                smoothedAngle = currentAngle;
+                wasGrabbedLastFrame = true;
+                hasControlledAngle = true;
+            }
+            else
+            {
+                // ОПТИМИЗАЦИЯ 2: Обычное сглаживание во время удержания
+                smoothedAngle = Mathf.Lerp(smoothedAngle, currentAngle, Time.deltaTime * angleSmoothSpeed);
+            }
+
+            lastControlledAngle = smoothedAngle;
         }
         else
         {
-            return;
+            // ОПТИМИЗАЦИЯ 3: Сбрасываем флаг кадра и выходим сразу, если рычаг не трогали
+            wasGrabbedLastFrame = false;
+            if (!hasControlledAngle) return;
+            
+            // Если отпустили, просто удерживаем последнее зафиксированное значение
+            smoothedAngle = lastControlledAngle;
         }
 
-        UpdateGearFromAngle(angleForControl);
+        // ОПТИМИЗАЦИЯ 4: Убрали промежуточную переменную angleForControl. Передаем напрямую.
+        UpdateGearFromAngle(smoothedAngle);
     }
+
 
     void UpdateGearFromAngle(float angle)
     {
         // ШАГ 1: Вычисляем отклонение от нейтрали (-90°)
-        if (debugMode) Debug.Log($"angle = {angle}");
+        // if (debugMode) Debug.Log($"angle = {angle}");
         float deviation = angle - neutralAngle;
         
         // ШАГ 2: Нормализуем отклонение в диапазон [-1, 1]
@@ -196,19 +220,26 @@ public class VRAdapter : MonoBehaviour
     }
 
     private float GetLocalLeverAngle()
+{
+    float rawAngle = 0f;
+
+    // Считываем углы Эйлера (в градусах от 0 до 360)
+    switch (trackingAxis)
     {
-        float rawAngle = 0f;
-
-        switch (trackingAxis)
-        {
-            case LeverAxis.X: rawAngle = vrLeverTransform.localEulerAngles.x; break;
-            case LeverAxis.Y: rawAngle = vrLeverTransform.localEulerAngles.y; break;
-            case LeverAxis.Z: rawAngle = vrLeverTransform.localEulerAngles.z; break;
-        }
-
-        if (rawAngle > 180f) rawAngle -= 360f;
-        return rawAngle;
+        case LeverAxis.X: rawAngle = vrLeverTransform.localEulerAngles.x; break;
+        case LeverAxis.Y: rawAngle = vrLeverTransform.localEulerAngles.y; break;
+        case LeverAxis.Z: rawAngle = vrLeverTransform.localEulerAngles.z; break;
     }
+    
+    if (debugMode) Debug.Log($"rawAngle (0-360) = {rawAngle}");
+
+    // Mathf.DeltaAngle идеально переводит (например, 350 градусов в -10)
+    float correctedRawAngle = Mathf.DeltaAngle(0, rawAngle);
+    
+    if (debugMode) Debug.Log($"correctedRawAngle (-180 to 180) = {correctedRawAngle}");
+
+    return correctedRawAngle;
+}
 
     public void EmergencyStop()
     {

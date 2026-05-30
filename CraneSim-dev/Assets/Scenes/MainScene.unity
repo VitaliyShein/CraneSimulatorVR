@@ -16463,7 +16463,7 @@ MonoBehaviour:
   m_SmoothPositionAmount: 8
   m_TightenPosition: 0.1
   m_TrackRotation: 1
-  m_SmoothRotation: 0
+  m_SmoothRotation: 1
   m_SmoothRotationAmount: 8
   m_TightenRotation: 0.1
   m_TrackScale: 1
@@ -30881,15 +30881,16 @@ MonoBehaviour:
   vrLeverTransform: {fileID: 722722122}
   controllerInteractor: {fileID: 1205309102}
   leverGrabInteractable: {fileID: 722722133}
-  minAngle: -90
+  referenceObject: {fileID: 1777614975}
+  minAngle: -135
   maxAngle: -45
-  deadZoneDegrees: 5
-  invertDirection: 0
+  deadZoneDegrees: 10
+  invertDirection: 1
   hapticAmplitude: 0.5
   hapticDuration: 0.1
   hapticCooldown: 0.2
   debugMode: 1
-  trackingAxis: 1
+  trackingAxis: 0
 --- !u!4 &1439517980 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: dbcf59b056832aa4b8c1a7a8b8f012c5,

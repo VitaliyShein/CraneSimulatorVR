@@ -151,9 +151,12 @@ public class VRAdapter : MonoBehaviour
 
         // Рассчитываем угол между векторами
         float angle = Vector3.SignedAngle(referenceDirection, leverDirection, GetRotationAxis());
-
-        // Нормализуем угол в диапазон -180..180
-        angle = Mathf.Repeat(angle + 180f, 360f) - 180f;
+        if (debugMode && isGrabbed && Time.frameCount % 60 == 0)
+        {
+            Debug.Log($"rawAngle = {angle:F1}");
+        }
+            // Нормализуем угол в диапазон -180..180
+            angle = Mathf.Repeat(angle + 180f, 360f) - 180f;
 
         if (debugMode && isGrabbed && Time.frameCount % 60 == 0)
         {

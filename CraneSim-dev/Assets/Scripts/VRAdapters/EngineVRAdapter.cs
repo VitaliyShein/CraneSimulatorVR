@@ -107,6 +107,8 @@ public class VRAdapter : MonoBehaviour
     {
         if (craneEngine == null || vrLeverTransform == null) return;
 
+
+
         if (isGrabbed)
         {
             float currentAngle = GetAngleRelativeToReference();
@@ -134,9 +136,9 @@ public class VRAdapter : MonoBehaviour
         UpdateGearFromAngle(smoothedAngle);
     }
 
-    /// <summary>
+
+
     /// Рассчитывает угол между текущим положением рычага и опорным объектом
-    /// </summary>
     private float GetAngleRelativeToReference()
     {
         if (referenceObject == null || vrLeverTransform == null)
@@ -149,20 +151,16 @@ public class VRAdapter : MonoBehaviour
         Vector3 leverDirection = GetLeverDirection();
         Vector3 referenceDirection = GetReferenceDirection();
 
-        // Рассчитываем угол между векторами
+        // SignedAngle уже возвращает угол в диапазоне -180..180
         float angle = Vector3.SignedAngle(referenceDirection, leverDirection, GetRotationAxis());
-        if (debugMode && isGrabbed && Time.frameCount % 60 == 0)
+        
+        // ВАЖНО: Сохраняем угол для отслеживания скачков
+        if (debugMode && isGrabbed)
         {
-            Debug.Log($"rawAngle = {angle:F1}");
-        }
-            // Нормализуем угол в диапазон -180..180
-            angle = Mathf.Repeat(angle + 180f, 360f) - 180f;
-
-        if (debugMode && isGrabbed && Time.frameCount % 60 == 0)
-        {
+            Debug.Log($"rawAngle = {angle:F1}°");
             Debug.Log($"Lever Dir: {leverDirection}, Ref Dir: {referenceDirection}, Angle: {angle:F1}°");
         }
-
+        
         return angle;
     }
 
@@ -172,7 +170,7 @@ public class VRAdapter : MonoBehaviour
     private Vector3 GetLeverDirection()
     {
         // По умолчанию используем forward, но можно настроить под конкретный рычаг
-        return vrLeverTransform.localRotation * Vector3.forward;
+        return vrLeverTransform.localRotation * Vector3.up;
     }
 
     /// <summary>
@@ -182,7 +180,7 @@ public class VRAdapter : MonoBehaviour
     {
         // По умолчанию используем направление опорного объекта
         // Для вертикального рычага это может быть Vector3.down
-        return referenceObject.rotation * Vector3.down;
+        return referenceObject.rotation * Vector3.up;
     }
 
     /// <summary>
@@ -292,6 +290,24 @@ public class VRAdapter : MonoBehaviour
         lastHapticTime = Time.time;
     }
 
+    // Добавьте этот метод для диагностики
+    void DebugLeverRotation()
+    {
+        if (vrLeverTransform == null) return;
+        
+        Vector3 localEuler = vrLeverTransform.localEulerAngles;
+        Vector3 globalEuler = vrLeverTransform.eulerAngles;
+        
+        Debug.Log($"=== Оси вращения рычага ===");
+        Debug.Log($"Local Rotation: X={localEuler.x:F1}°, Y={localEuler.y:F1}°, Z={localEuler.z:F1}°");
+        Debug.Log($"Global Rotation: X={globalEuler.x:F1}°, Y={globalEuler.y:F1}°, Z={globalEuler.z:F1}°");
+        
+        // Определяем, какая ось реально меняется при движении рычага
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            Debug.Log("Двигайте рычаг и смотрите какая ось меняется!");
+        }
+    }
     public void EmergencyStop()
     {
         lastControlledAngle = neutralAngle;

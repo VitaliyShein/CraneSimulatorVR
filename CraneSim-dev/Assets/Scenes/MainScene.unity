@@ -5735,7 +5735,7 @@ ConfigurableJoint:
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0.11732674, y: -0.14633974, z: 0.14651358}
   serializedVersion: 3
-  m_SecondaryAxis: {x: 0, y: 1, z: 0}
+  m_SecondaryAxis: {x: 1, y: 1, z: 0}
   m_XMotion: 0
   m_YMotion: 0
   m_ZMotion: 0
@@ -18170,7 +18170,7 @@ Transform:
   m_GameObject: {fileID: 807653231}
   serializedVersion: 2
   m_LocalRotation: {x: -0.71325004, y: -0.0000001572028, z: -0.00000015889842, w: -0.70090973}
-  m_LocalPosition: {x: 0.12, y: -2.64, z: -0.35}
+  m_LocalPosition: {x: 0.12, y: -2.64, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18207,7 +18207,7 @@ MonoBehaviour:
   m_OriginBaseGameObject: {fileID: 807653231}
   m_CameraFloorOffsetObject: {fileID: 1540620962}
   m_RequestedTrackingOriginMode: 0
-  m_CameraYOffset: 1.1176
+  m_CameraYOffset: 2
 --- !u!1 &809623333
 GameObject:
   m_ObjectHideFlags: 0
@@ -23974,6 +23974,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1037659485 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2835506776717505565, guid: db02c1e905cab7e4f998402e3e826366,
+    type: 3}
+  m_PrefabInstance: {fileID: 2835506775152467261}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20e96cb865932242b523f3fc17abaf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1040525539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31407,6 +31419,7 @@ GameObject:
   - component: {fileID: 1438129756}
   - component: {fileID: 1438129757}
   - component: {fileID: 1438129758}
+  - component: {fileID: 1438129759}
   m_Layer: 0
   m_Name: VRAdapter
   m_TagString: Untagged
@@ -31441,19 +31454,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9b3ba5dc2050d40bb0a29125849ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  craneEngine: {fileID: 2835506775152467267}
-  vrLeverTransform: {fileID: 722722122}
-  controllerInteractor: {fileID: 1205309102}
-  leverGrabInteractable: {fileID: 722722133}
+  craneEngine: {fileID: 1037659485}
+  vrLeverTransform: {fileID: 1610742677}
+  controllerInteractor: {fileID: 915120901}
+  leverGrabInteractable: {fileID: 1610742689}
   referenceObject: {fileID: 1777614975}
-  minAngle: -135
-  maxAngle: -45
+  minAngle: -30
+  maxAngle: 30
   deadZoneDegrees: 10
-  invertDirection: 1
+  invertDirection: 0
   hapticAmplitude: 0.5
   hapticDuration: 0.1
   hapticCooldown: 0.2
-  debugMode: 0
+  debugMode: 1
   trackingAxis: 0
 --- !u!114 &1438129758
 MonoBehaviour:
@@ -31471,9 +31484,35 @@ MonoBehaviour:
   vrLeverTransform: {fileID: 190945853}
   controllerInteractor: {fileID: 1205309102}
   leverGrabInteractable: {fileID: 190945855}
-  referenceObject: {fileID: 1612187454}
-  minAngle: 60
-  maxAngle: 120
+  referenceObject: {fileID: 1777614975}
+  minAngle: -45
+  maxAngle: 45
+  deadZoneDegrees: 10
+  invertDirection: 1
+  hapticAmplitude: 0.5
+  hapticDuration: 0.1
+  hapticCooldown: 0.2
+  debugMode: 0
+  trackingAxis: 0
+--- !u!114 &1438129759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438129755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af9b3ba5dc2050d40bb0a29125849ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craneEngine: {fileID: 1919800903}
+  vrLeverTransform: {fileID: 190945853}
+  controllerInteractor: {fileID: 1205309102}
+  leverGrabInteractable: {fileID: 190945855}
+  referenceObject: {fileID: 1777614975}
+  minAngle: -30
+  maxAngle: 30
   deadZoneDegrees: 10
   invertDirection: 0
   hapticAmplitude: 0.5
@@ -34072,37 +34111,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!1 &1612187453
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1612187454}
-  m_Layer: 0
-  m_Name: LeftJoystickAnchor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1612187454
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1612187453}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.11732674, y: -0.15014859, z: 0.14651358}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1777614975}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1613179223 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400020, guid: 32099cf677a3e9b4b8aa183c37df84de,
@@ -40205,6 +40213,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916821535}
   m_Mesh: {fileID: 4300000, guid: 451664e297f8c4d2396319372d5eacfc, type: 3}
+--- !u!114 &1919800903 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2835506775570984552, guid: db02c1e905cab7e4f998402e3e826366,
+    type: 3}
+  m_PrefabInstance: {fileID: 2835506775152467261}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20e96cb865932242b523f3fc17abaf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1921714684
 GameObject:
   m_ObjectHideFlags: 0
@@ -44255,11 +44275,7 @@ PrefabInstance:
       addedObject: {fileID: 190945853}
     - targetCorrespondingSourceObject: {fileID: 2835506776024976567, guid: db02c1e905cab7e4f998402e3e826366,
         type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 1612187454}
-    - targetCorrespondingSourceObject: {fileID: 2835506776024976567, guid: db02c1e905cab7e4f998402e3e826366,
-        type: 3}
-      insertIndex: 4
+      insertIndex: 3
       addedObject: {fileID: 1610742677}
     - targetCorrespondingSourceObject: {fileID: 2835506776024976559, guid: db02c1e905cab7e4f998402e3e826366,
         type: 3}

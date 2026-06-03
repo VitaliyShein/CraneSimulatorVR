@@ -186,16 +186,17 @@ public class VRAdapter : MonoBehaviour
     /// <summary>
     /// Определяет ось вращения для SignedAngle
     /// </summary>
-    private Vector3 GetRotationAxis()
-    {
-        return trackingAxis switch
-        {
-            LeverAxis.X => Vector3.right,
-            LeverAxis.Y => Vector3.up,
-            LeverAxis.Z => Vector3.forward,
-            _ => Vector3.right
-        };
-    }
+ private Vector3 GetRotationAxis()
+{
+    // Используем локальную ось рычага
+    // Если рычаг вращается по оси X (в инспекторе меняется Rotation X)
+    if (trackingAxis == LeverAxis.X)
+        return vrLeverTransform.right;   // Локальный "вправо" от рычага
+    else if (trackingAxis == LeverAxis.Y)
+        return vrLeverTransform.up;      // Локальный "вверх" от рычага
+    else
+        return vrLeverTransform.forward; // Локальный "вперед" от рычага
+}
 
     void UpdateGearFromAngle(float angle)
     {

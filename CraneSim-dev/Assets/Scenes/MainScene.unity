@@ -31450,9 +31450,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1438129756}
-  - component: {fileID: 1438129757}
   - component: {fileID: 1438129758}
   - component: {fileID: 1438129759}
+  - component: {fileID: 1438129760}
+  - component: {fileID: 1438129757}
   m_Layer: 0
   m_Name: VRAdapter
   m_TagString: Untagged
@@ -31482,7 +31483,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438129755}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af9b3ba5dc2050d40bb0a29125849ff6, type: 3}
   m_Name: 
@@ -31494,12 +31495,12 @@ MonoBehaviour:
   minAngle: -30
   maxAngle: 30
   deadZoneDegrees: 10
-  invertDirection: 0
+  invertDirection: 1
   hapticAmplitude: 0.5
   hapticDuration: 0.1
   hapticCooldown: 0.2
-  debugMode: 1
-  trackingAxis: 0
+  debugMode: 0
+  trackingAxis: 1
 --- !u!114 &1438129758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31549,6 +31550,31 @@ MonoBehaviour:
   hapticDuration: 0.1
   hapticCooldown: 0.2
   debugMode: 1
+  trackingAxis: 1
+--- !u!114 &1438129760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438129755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af9b3ba5dc2050d40bb0a29125849ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craneEngine: {fileID: 1139011941}
+  vrLeverTransform: {fileID: 1495336618}
+  controllerInteractor: {fileID: 915120901}
+  leverGrabInteractable: {fileID: 1495336622}
+  minAngle: -30
+  maxAngle: 30
+  deadZoneDegrees: 5
+  invertDirection: 1
+  hapticAmplitude: 0.5
+  hapticDuration: 0.1
+  hapticCooldown: 0.2
+  debugMode: 0
   trackingAxis: 1
 --- !u!4 &1439517980 stripped
 Transform:
@@ -32759,7 +32785,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_KeepOriginalParent: 0
+  m_KeepOriginalParent: 1
   m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0
@@ -34092,7 +34118,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_KeepOriginalParent: 0
+  m_KeepOriginalParent: 1
   m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0

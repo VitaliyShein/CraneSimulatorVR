@@ -10,9 +10,6 @@ public class VRAdapter : MonoBehaviour
     public XRGrabInteractable leverGrabInteractable;
 
     [Header("Настройки углов рычага")]
-    [Tooltip("Опорный объект для расчета угла (например, корпус крана)")]
-    public Transform referenceObject; // Объект, относительно которого считаем угол
-
     [Tooltip("Минимальный угол рычага (например, -135)")]
     public float minAngle = -135f;
 
@@ -44,14 +41,12 @@ public class VRAdapter : MonoBehaviour
     private bool hasControlledAngle = false;
 
     private float neutralAngle;
-
-    // Для плавности
     private float smoothedAngle;
     private bool wasGrabbedLastFrame = false;
 
-    // Храним начальное направление рычага
-    private Vector3 initialLeverDirection;
-    private Quaternion initialLeverRotation;
+    // Для сглаживания скачков
+    private float previousRawAngle = 0f;
+    private float continuousAngle = 0f;
 
     void Start()
     {
@@ -59,29 +54,14 @@ public class VRAdapter : MonoBehaviour
             lastGear = craneEngine.gearNow;
 
         neutralAngle = (minAngle + maxAngle) / 2f;
-
-        // Если нет referenceObject, создаем виртуальный
-        if (referenceObject == null)
-        {
-            referenceObject = new GameObject($"[VRAdapter] Reference_{gameObject.name}").transform;
-            referenceObject.SetParent(vrLeverTransform.parent);
-            referenceObject.position = vrLeverTransform.position;
-            referenceObject.rotation = Quaternion.identity;
-            if (debugMode) Debug.Log($"Создан виртуальный referenceObject для {gameObject.name}");
-        }
-
-        // Сохраняем начальное направление рычага
-        if (vrLeverTransform != null)
-        {
-            initialLeverRotation = vrLeverTransform.localRotation;
-            initialLeverDirection = GetLeverDirection();
-            if (debugMode) Debug.Log($"Начальное направление рычага: {initialLeverDirection}");
-        }
+        smoothedAngle = neutralAngle;
+        previousRawAngle = neutralAngle;
+        continuousAngle = neutralAngle;
 
         if (debugMode)
         {
             Debug.Log($"[VRAdapter] Диапазон: {minAngle}° до {maxAngle}°, нейтраль: {neutralAngle}°");
-            Debug.Log($"[VRAdapter] Reference object: {(referenceObject != null ? referenceObject.name : "null")}");
+            Debug.Log($"[VRAdapter] Отслеживаемая ось: {trackingAxis}");
         }
 
         if (leverGrabInteractable != null)
@@ -94,6 +74,10 @@ public class VRAdapter : MonoBehaviour
     void OnLeverGrabbed(SelectEnterEventArgs args)
     {
         isGrabbed = true;
+        // При захвате сразу получаем текущий угол
+        smoothedAngle = GetLocalLeverAngle();
+        continuousAngle = smoothedAngle;
+        previousRawAngle = smoothedAngle;
         if (debugMode) Debug.Log("[VRAdapter] Рычаг захвачен");
     }
 
@@ -107,28 +91,27 @@ public class VRAdapter : MonoBehaviour
     {
         if (craneEngine == null || vrLeverTransform == null) return;
 
-
-
         if (isGrabbed)
         {
-            float currentAngle = GetAngleRelativeToReference();
-
-            if (!wasGrabbedLastFrame)
-            {
-                smoothedAngle = currentAngle;
-                wasGrabbedLastFrame = true;
-                hasControlledAngle = true;
-            }
-            else
-            {
-                smoothedAngle = Mathf.Lerp(smoothedAngle, currentAngle, Time.deltaTime * 10f);
-            }
-
+            float currentAngle = GetLocalLeverAngle();
+            
+            // Устраняем скачки угла
+            currentAngle = UnwrapAngle(currentAngle);
+            
+            // Ограничиваем диапазоном
+            currentAngle = Mathf.Clamp(currentAngle, minAngle, maxAngle);
+            
+            // Сглаживание
+            smoothedAngle = Mathf.Lerp(smoothedAngle, currentAngle, Time.deltaTime * 15f);
             lastControlledAngle = smoothedAngle;
+            
+            if (debugMode && Time.frameCount % 60 == 0)
+            {
+                Debug.Log($"Angle: {smoothedAngle:F1}°");
+            }
         }
         else
         {
-            wasGrabbedLastFrame = false;
             if (!hasControlledAngle) return;
             smoothedAngle = lastControlledAngle;
         }
@@ -136,67 +119,60 @@ public class VRAdapter : MonoBehaviour
         UpdateGearFromAngle(smoothedAngle);
     }
 
-
-
-    /// Рассчитывает угол между текущим положением рычага и опорным объектом
-    private float GetAngleRelativeToReference()
+    /// <summary>
+    /// Получает локальный угол рычага по выбранной оси
+    /// </summary>
+    private float GetLocalLeverAngle()
     {
-        if (referenceObject == null || vrLeverTransform == null)
+        if (vrLeverTransform == null) return neutralAngle;
+
+        float rawAngle = 0f;
+
+        // Считываем угол в зависимости от выбранной оси
+        switch (trackingAxis)
         {
-            Debug.LogError("ReferenceObject или vrLeverTransform не назначен!");
-            return neutralAngle;
+            case LeverAxis.X:
+                rawAngle = vrLeverTransform.localEulerAngles.x;
+                break;
+            case LeverAxis.Y:
+                rawAngle = vrLeverTransform.localEulerAngles.y;
+                break;
+            case LeverAxis.Z:
+                rawAngle = vrLeverTransform.localEulerAngles.z;
+                break;
         }
 
-        // Получаем направления
-        Vector3 leverDirection = GetLeverDirection();
-        Vector3 referenceDirection = GetReferenceDirection();
+        // Конвертируем из диапазона 0-360 в диапазон -180..180
+        float normalizedAngle = rawAngle;
+        if (normalizedAngle > 180f)
+            normalizedAngle -= 360f;
 
-        // SignedAngle уже возвращает угол в диапазоне -180..180
-        float angle = Vector3.SignedAngle(referenceDirection, leverDirection, GetRotationAxis());
-        
-        // ВАЖНО: Сохраняем угол для отслеживания скачков
-        if (debugMode && isGrabbed)
+        if (debugMode && isGrabbed && Time.frameCount % 60 == 0)
         {
-            Debug.Log($"rawAngle = {angle:F1}°");
-            Debug.Log($"Lever Dir: {leverDirection}, Ref Dir: {referenceDirection}, Angle: {angle:F1}°");
+            Debug.Log($"Raw: {rawAngle:F1}° → Normalized: {normalizedAngle:F1}°");
         }
+
+        return normalizedAngle;
+    }
+
+    /// <summary>
+    /// Устраняет скачки угла (например, переход с 179° на -179°)
+    /// </summary>
+    private float UnwrapAngle(float rawAngle)
+    {
+        float delta = rawAngle - previousRawAngle;
         
-        return angle;
+        // Если разница больше 180°, значит был скачок через границу
+        if (delta > 180f)
+            delta -= 360f;
+        else if (delta < -180f)
+            delta += 360f;
+        
+        continuousAngle += delta;
+        previousRawAngle = rawAngle;
+        
+        return continuousAngle;
     }
-
-    /// <summary>
-    /// Получает направление рычага в локальном пространстве
-    /// </summary>
-    private Vector3 GetLeverDirection()
-    {
-        // По умолчанию используем forward, но можно настроить под конкретный рычаг
-        return vrLeverTransform.localRotation * Vector3.up;
-    }
-
-    /// <summary>
-    /// Получает опорное направление (например, вниз или в сторону)
-    /// </summary>
-    private Vector3 GetReferenceDirection()
-    {
-        // По умолчанию используем направление опорного объекта
-        // Для вертикального рычага это может быть Vector3.down
-        return referenceObject.rotation * Vector3.up;
-    }
-
-    /// <summary>
-    /// Определяет ось вращения для SignedAngle
-    /// </summary>
- private Vector3 GetRotationAxis()
-{
-    // Используем локальную ось рычага
-    // Если рычаг вращается по оси X (в инспекторе меняется Rotation X)
-    if (trackingAxis == LeverAxis.X)
-        return vrLeverTransform.right;   // Локальный "вправо" от рычага
-    else if (trackingAxis == LeverAxis.Y)
-        return vrLeverTransform.up;      // Локальный "вверх" от рычага
-    else
-        return vrLeverTransform.forward; // Локальный "вперед" от рычага
-}
 
     void UpdateGearFromAngle(float angle)
     {
@@ -291,26 +267,9 @@ public class VRAdapter : MonoBehaviour
         lastHapticTime = Time.time;
     }
 
-    // Добавьте этот метод для диагностики
-    void DebugLeverRotation()
-    {
-        if (vrLeverTransform == null) return;
-        
-        Vector3 localEuler = vrLeverTransform.localEulerAngles;
-        Vector3 globalEuler = vrLeverTransform.eulerAngles;
-        
-        Debug.Log($"=== Оси вращения рычага ===");
-        Debug.Log($"Local Rotation: X={localEuler.x:F1}°, Y={localEuler.y:F1}°, Z={localEuler.z:F1}°");
-        Debug.Log($"Global Rotation: X={globalEuler.x:F1}°, Y={globalEuler.y:F1}°, Z={globalEuler.z:F1}°");
-        
-        // Определяем, какая ось реально меняется при движении рычага
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            Debug.Log("Двигайте рычаг и смотрите какая ось меняется!");
-        }
-    }
     public void EmergencyStop()
     {
+        smoothedAngle = neutralAngle;
         lastControlledAngle = neutralAngle;
         hasControlledAngle = true;
         SetGear(0);

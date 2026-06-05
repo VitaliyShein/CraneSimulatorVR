@@ -5793,7 +5793,7 @@ ConfigurableJoint:
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
-  m_RotationDriveMode: 1
+  m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 4
     positionSpring: 0
@@ -5985,7 +5985,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190945852}
   serializedVersion: 4
-  m_Mass: 10000
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -6001,7 +6001,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 1
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!23 &190945857
@@ -31482,7 +31482,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438129755}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af9b3ba5dc2050d40bb0a29125849ff6, type: 3}
   m_Name: 
@@ -31491,7 +31491,6 @@ MonoBehaviour:
   vrLeverTransform: {fileID: 1610742677}
   controllerInteractor: {fileID: 915120901}
   leverGrabInteractable: {fileID: 1610742689}
-  referenceObject: {fileID: 1777614975}
   minAngle: -30
   maxAngle: 30
   deadZoneDegrees: 10
@@ -31517,7 +31516,6 @@ MonoBehaviour:
   vrLeverTransform: {fileID: 190945853}
   controllerInteractor: {fileID: 1205309102}
   leverGrabInteractable: {fileID: 190945855}
-  referenceObject: {fileID: 1777614975}
   minAngle: -30
   maxAngle: 30
   deadZoneDegrees: 10
@@ -31526,7 +31524,7 @@ MonoBehaviour:
   hapticDuration: 0.1
   hapticCooldown: 0.2
   debugMode: 0
-  trackingAxis: 1
+  trackingAxis: 0
 --- !u!114 &1438129759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31534,7 +31532,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438129755}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af9b3ba5dc2050d40bb0a29125849ff6, type: 3}
   m_Name: 
@@ -31543,7 +31541,6 @@ MonoBehaviour:
   vrLeverTransform: {fileID: 190945853}
   controllerInteractor: {fileID: 1205309102}
   leverGrabInteractable: {fileID: 190945855}
-  referenceObject: {fileID: 2835506775152467262}
   minAngle: -30
   maxAngle: 30
   deadZoneDegrees: 10
@@ -31552,7 +31549,7 @@ MonoBehaviour:
   hapticDuration: 0.1
   hapticCooldown: 0.2
   debugMode: 1
-  trackingAxis: 0
+  trackingAxis: 1
 --- !u!4 &1439517980 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: dbcf59b056832aa4b8c1a7a8b8f012c5,
@@ -32632,7 +32629,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.009294984, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -4.938462, y: 22.489298, z: 23.93645}
+  m_ConnectedAnchor: {x: -4.938462, y: 22.489298, z: 24.576448}
   serializedVersion: 2
   m_UseSpring: 0
   m_Spring:

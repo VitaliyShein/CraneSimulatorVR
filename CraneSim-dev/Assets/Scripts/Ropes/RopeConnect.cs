@@ -83,7 +83,10 @@ public class RopeConnect : MonoBehaviour {
 //        }
     }
         
-
+    public void OnConnectButtonPressed()
+    {
+        Debug.Log("🔘 Кнопка Connect нажата!");
+    }
     private IEnumerator Сentering () //процесс центровки
     {
         Vector3 hookStartPosition = hook.transform.position;

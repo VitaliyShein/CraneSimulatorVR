@@ -20872,6 +20872,7 @@ GameObject:
   - component: {fileID: 915120895}
   - component: {fileID: 915120901}
   - component: {fileID: 915120903}
+  - component: {fileID: 915120904}
   m_Layer: 0
   m_Name: Right Controller
   m_TagString: Untagged
@@ -21263,6 +21264,34 @@ CapsuleCollider:
   m_Height: 0.28162968
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &915120904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915120893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dfd378faa1c9034e846016253d71ed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonToCheck: 4
+  OnConnectButtonPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 903e1e396766946a7ba9ddb81f7c37e7, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &929107825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31454,6 +31483,7 @@ GameObject:
   - component: {fileID: 1438129759}
   - component: {fileID: 1438129760}
   - component: {fileID: 1438129757}
+  - component: {fileID: 1438129761}
   m_Layer: 0
   m_Name: VRAdapter
   m_TagString: Untagged
@@ -31576,6 +31606,34 @@ MonoBehaviour:
   hapticCooldown: 0.2
   debugMode: 0
   trackingAxis: 1
+--- !u!114 &1438129761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438129755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dfd378faa1c9034e846016253d71ed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonToCheck: 2
+  OnConnectButtonPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1139011943}
+        m_TargetAssemblyTypeName: RopeConnect, Assembly-CSharp
+        m_MethodName: OnConnectButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1439517980 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: dbcf59b056832aa4b8c1a7a8b8f012c5,

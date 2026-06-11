@@ -31441,157 +31441,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420825719}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1438129755
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1438129756}
-  - component: {fileID: 1438129758}
-  - component: {fileID: 1438129759}
-  - component: {fileID: 1438129760}
-  - component: {fileID: 1438129757}
-  - component: {fileID: 1438129761}
-  m_Layer: 0
-  m_Name: VRAdapter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1438129756
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1438129755}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -5.52, y: 15.22, z: 18.6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1438129757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1438129755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af9b3ba5dc2050d40bb0a29125849ff6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  craneEngine: {fileID: 1037659485}
-  vrLeverTransform: {fileID: 1610742677}
-  controllerInteractor: {fileID: 915120901}
-  leverGrabInteractable: {fileID: 1610742689}
-  minAngle: -30
-  maxAngle: 30
-  deadZoneDegrees: 10
-  invertDirection: 1
-  hapticAmplitude: 0.5
-  hapticDuration: 0.1
-  hapticCooldown: 0.2
-  debugMode: 0
-  trackingAxis: 1
---- !u!114 &1438129758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1438129755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af9b3ba5dc2050d40bb0a29125849ff6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  craneEngine: {fileID: 2835506775152467267}
-  vrLeverTransform: {fileID: 190945853}
-  controllerInteractor: {fileID: 1205309102}
-  leverGrabInteractable: {fileID: 190945855}
-  minAngle: -30
-  maxAngle: 30
-  deadZoneDegrees: 10
-  invertDirection: 1
-  hapticAmplitude: 0.5
-  hapticDuration: 0.1
-  hapticCooldown: 0.2
-  debugMode: 0
-  trackingAxis: 0
---- !u!114 &1438129759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1438129755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af9b3ba5dc2050d40bb0a29125849ff6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  craneEngine: {fileID: 1919800903}
-  vrLeverTransform: {fileID: 190945853}
-  controllerInteractor: {fileID: 1205309102}
-  leverGrabInteractable: {fileID: 190945855}
-  minAngle: -30
-  maxAngle: 30
-  deadZoneDegrees: 10
-  invertDirection: 0
-  hapticAmplitude: 0.5
-  hapticDuration: 0.1
-  hapticCooldown: 0.2
-  debugMode: 1
-  trackingAxis: 1
---- !u!114 &1438129760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1438129755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af9b3ba5dc2050d40bb0a29125849ff6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  craneEngine: {fileID: 1139011941}
-  vrLeverTransform: {fileID: 1495336618}
-  controllerInteractor: {fileID: 915120901}
-  leverGrabInteractable: {fileID: 1495336622}
-  minAngle: -30
-  maxAngle: 30
-  deadZoneDegrees: 5
-  invertDirection: 1
-  hapticAmplitude: 0.5
-  hapticDuration: 0.1
-  hapticCooldown: 0.2
-  debugMode: 0
-  trackingAxis: 1
---- !u!114 &1438129761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1438129755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dfd378faa1c9034e846016253d71ed3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ropeConnectScript: {fileID: 1139011943}
-  connectButtonAction: {fileID: -8069514856583376848, guid: 0be0028c24f2a4c14a96b6aa39055933,
-    type: 3}
 --- !u!4 &1439517980 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: dbcf59b056832aa4b8c1a7a8b8f012c5,
@@ -44679,6 +44528,159 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2835506775152467261}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8131279071840163771
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2217327111361126255, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: m_Name
+      value: VRAdapter
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163563398678896203, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: craneEngine
+      value: 
+      objectReference: {fileID: 1139011941}
+    - target: {fileID: 3163563398678896203, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: vrLeverTransform
+      value: 
+      objectReference: {fileID: 1495336618}
+    - target: {fileID: 3163563398678896203, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: controllerInteractor
+      value: 
+      objectReference: {fileID: 915120901}
+    - target: {fileID: 3163563398678896203, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: leverGrabInteractable
+      value: 
+      objectReference: {fileID: 1495336622}
+    - target: {fileID: 4013891822103824410, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013891822103824410, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 15.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013891822103824410, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 18.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013891822103824410, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013891822103824410, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013891822103824410, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013891822103824410, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013891822103824410, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013891822103824410, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013891822103824410, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325522048722197990, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: ropeConnectScript
+      value: 
+      objectReference: {fileID: 1139011943}
+    - target: {fileID: 5590496716689424222, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: craneEngine
+      value: 
+      objectReference: {fileID: 2835506775152467267}
+    - target: {fileID: 5590496716689424222, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: vrLeverTransform
+      value: 
+      objectReference: {fileID: 190945853}
+    - target: {fileID: 5590496716689424222, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: controllerInteractor
+      value: 
+      objectReference: {fileID: 1205309102}
+    - target: {fileID: 5590496716689424222, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: leverGrabInteractable
+      value: 
+      objectReference: {fileID: 190945855}
+    - target: {fileID: 8235474563025966832, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: craneEngine
+      value: 
+      objectReference: {fileID: 1919800903}
+    - target: {fileID: 8235474563025966832, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: vrLeverTransform
+      value: 
+      objectReference: {fileID: 190945853}
+    - target: {fileID: 8235474563025966832, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: controllerInteractor
+      value: 
+      objectReference: {fileID: 1205309102}
+    - target: {fileID: 8235474563025966832, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: leverGrabInteractable
+      value: 
+      objectReference: {fileID: 190945855}
+    - target: {fileID: 8793081416297226067, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: craneEngine
+      value: 
+      objectReference: {fileID: 1037659485}
+    - target: {fileID: 8793081416297226067, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: vrLeverTransform
+      value: 
+      objectReference: {fileID: 1610742677}
+    - target: {fileID: 8793081416297226067, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: controllerInteractor
+      value: 
+      objectReference: {fileID: 915120901}
+    - target: {fileID: 8793081416297226067, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      propertyPath: leverGrabInteractable
+      value: 
+      objectReference: {fileID: 1610742689}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0cc1cc2e479416b4dadfd32f0dfcf530, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -44696,4 +44698,4 @@ SceneRoots:
   - {fileID: 841765702}
   - {fileID: 1817576110}
   - {fileID: 1473585283}
-  - {fileID: 1438129756}
+  - {fileID: 8131279071840163771}

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class VRHookAction : MonoBehaviour
+public class VRHookButtonAttach : MonoBehaviour
 {
     [Header("Ссылки на компоненты")]
     [SerializeField] private RopeConnect ropeConnectScript;

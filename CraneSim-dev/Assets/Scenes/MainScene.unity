@@ -20872,7 +20872,6 @@ GameObject:
   - component: {fileID: 915120895}
   - component: {fileID: 915120901}
   - component: {fileID: 915120903}
-  - component: {fileID: 915120904}
   m_Layer: 0
   m_Name: Right Controller
   m_TagString: Untagged
@@ -21264,20 +21263,6 @@ CapsuleCollider:
   m_Height: 0.28162968
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &915120904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915120893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dfd378faa1c9034e846016253d71ed3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ropeConnectScript: {fileID: 0}
-  connectButtonAction: {fileID: 0}
 --- !u!1001 &929107825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32686,7 +32671,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.009294984, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.117326796, y: 0.16027866, z: 0.14651358}
+  m_ConnectedAnchor: {x: -4.938462, y: 22.489298, z: 24.576448}
   serializedVersion: 2
   m_UseSpring: 0
   m_Spring:

@@ -66,6 +66,8 @@ public class RopeConnect : MonoBehaviour {
             }
         }
 
+        
+
         if (connectingProcess)
         {
             if (centeringProcess == null)
@@ -83,10 +85,10 @@ public class RopeConnect : MonoBehaviour {
 //        }
     }
         
-        // Этот метод теперь будет вызываться при нажатии кнопки на VR-контроллере
+    // Этот метод теперь будет вызываться при нажатии кнопки на VR-контроллере
     public void OnConnectButtonPressed()
     {
-        Debug.Log("🔘 Кнопка Connect на VR-контроллере нажата!");
+        Debug.Log("Кнопка Connect на VR-контроллере нажата!");
 
         if (!isConnect && !pressingButton && inTrigger)
         {
@@ -118,6 +120,7 @@ public class RopeConnect : MonoBehaviour {
             }
         }
     }
+
 
     private IEnumerator Сentering () //процесс центровки
     {

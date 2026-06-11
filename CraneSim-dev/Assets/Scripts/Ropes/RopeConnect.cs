@@ -66,6 +66,8 @@ public class RopeConnect : MonoBehaviour {
             }
         }
 
+        
+
         if (connectingProcess)
         {
             if (centeringProcess == null)
@@ -83,6 +85,42 @@ public class RopeConnect : MonoBehaviour {
 //        }
     }
         
+    // Этот метод теперь будет вызываться при нажатии кнопки на VR-контроллере
+    public void OnConnectButtonPressed()
+    {
+        Debug.Log("Кнопка Connect на VR-контроллере нажата!");
+
+        if (!isConnect && !pressingButton && inTrigger)
+        {
+            // Запускает процесс сцепки
+            connectingProcess = true;
+            // Делаем крюк кинематичным
+            hook.GetComponent<Rigidbody>().isKinematic = true;
+            StartPressTime();
+        }
+        else if (isConnect && !pressingButton)
+        {
+            // Отцепка
+            GetComponent<RopeVerlet>().Disconnect();
+            isConnect = false;
+            connectingProcess = false;
+            StartPressTime();
+
+            // Удаляем FJ с груза, если они есть, а крюк уже за пределами триггера
+            if (!inTrigger)
+            {
+                FixedJoint[] fj = cargo.GetComponents<FixedJoint>();
+                if (fj.Length != 0)
+                {
+                    for (int i = 0; i < fj.Length; i++)
+                    {
+                        Destroy(fj[i]);
+                    }
+                }
+            }
+        }
+    }
+
 
     private IEnumerator Сentering () //процесс центровки
     {

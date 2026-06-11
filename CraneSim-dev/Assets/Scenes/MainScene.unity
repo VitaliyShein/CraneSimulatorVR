@@ -21276,22 +21276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfd378faa1c9034e846016253d71ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonToCheck: 4
-  OnConnectButtonPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11500000, guid: 903e1e396766946a7ba9ddb81f7c37e7, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  ropeConnectScript: {fileID: 0}
+  connectButtonAction: {fileID: 0}
 --- !u!1001 &929107825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31618,22 +31604,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfd378faa1c9034e846016253d71ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonToCheck: 2
-  OnConnectButtonPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1139011943}
-        m_TargetAssemblyTypeName: RopeConnect, Assembly-CSharp
-        m_MethodName: OnConnectButtonPressed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  ropeConnectScript: {fileID: 1139011943}
+  connectButtonAction: {fileID: -8069514856583376848, guid: 0be0028c24f2a4c14a96b6aa39055933,
+    type: 3}
 --- !u!4 &1439517980 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: dbcf59b056832aa4b8c1a7a8b8f012c5,
@@ -32713,7 +32686,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.009294984, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -4.938462, y: 22.489298, z: 24.576448}
+  m_ConnectedAnchor: {x: 0.117326796, y: 0.16027866, z: 0.14651358}
   serializedVersion: 2
   m_UseSpring: 0
   m_Spring:

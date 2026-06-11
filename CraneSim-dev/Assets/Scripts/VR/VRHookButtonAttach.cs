@@ -1,39 +1,41 @@
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.InputSystem;
 
-public class VRConnectButtonDeviceBased : MonoBehaviour
+public class VRHookAction : MonoBehaviour
 {
-    [Header("Настройки")]
-    [SerializeField] private InputHelpers.Button buttonToCheck = InputHelpers.Button.SecondaryButton;
-    
-    [Header("События")]
-    public UnityEvent OnConnectButtonPressed;
-    
-    private XRController deviceBasedController;
-    private bool wasPressed = false;
-    
-    private void Start()
+    [Header("Ссылки на компоненты")]
+    [SerializeField] private RopeConnect ropeConnectScript;
+
+    [Header("Ввод VR (Input System)")]
+    [Tooltip("Перетащите сюда нужный InputActionReference (например XRI LeftHand/Activate или Custom)")]
+    [SerializeField] private InputActionReference connectButtonAction;
+
+    private void OnEnable()
     {
-        deviceBasedController = GetComponent<XRController>();
-    }
-    
-    private void Update()
-    {
-        if (deviceBasedController == null) return;
-        
-        // Проверяем, нажата ли кнопка
-        bool isPressed = deviceBasedController.inputDevice.IsPressed(buttonToCheck, out bool value, 0.1f);
-        
-        if (isPressed && !wasPressed)
+        if (connectButtonAction != null && connectButtonAction.action != null)
         {
-            OnConnectButtonPressed?.Invoke();
-            
-            wasPressed = true;
+            connectButtonAction.action.performed += OnButtonPressed;
         }
-        else if (!isPressed)
+    }
+
+    private void OnDisable()
+    {
+        if (connectButtonAction != null && connectButtonAction.action != null)
         {
-            wasPressed = false;
+            connectButtonAction.action.performed -= OnButtonPressed;
+        }
+    }
+
+    private void OnButtonPressed(InputAction.CallbackContext context)
+    {
+        if (ropeConnectScript != null)
+        {
+            // Вызываем логику сцепки/расцепки в основном скрипте
+            ropeConnectScript.OnConnectButtonPressed();
+        }
+        else
+        {
+            Debug.LogWarning("VRHookAction: Не назначена ссылка на скрипт RopeConnect!");
         }
     }
 }

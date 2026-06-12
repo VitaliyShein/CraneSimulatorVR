@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Keys: 07000000
   Values:
-  - featureSets: []
+  - featureSets:
+    - com.picoxr.openxr.features
   m_vulkanAdditionalGraphicsQueue: 0

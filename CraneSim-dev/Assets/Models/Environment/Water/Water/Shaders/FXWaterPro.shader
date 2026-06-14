@@ -1,5 +1,4 @@
 // Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
 Shader "FX/Water" {
@@ -17,11 +16,6 @@ Properties {
 	[HideInInspector] _RefractionTex ("Internal Refraction", 2D) = "" {}
 }
 
-
-// -----------------------------------------------------------
-// Fragment program cards
-
-
 Subshader {
 	Tags { "WaterMode"="Refractive" "RenderType"="Opaque" }
 	Pass {
@@ -38,7 +32,6 @@ CGPROGRAM
 #define HAS_REFRACTION 1
 #endif
 
-
 #include "UnityCG.cginc"
 
 uniform float4 _WaveScale4;
@@ -54,6 +47,7 @@ uniform float _RefrDistort;
 struct appdata {
 	float4 vertex : POSITION;
 	float3 normal : NORMAL;
+	UNITY_VERTEX_INPUT_INSTANCE_ID // Магический макрос 1: Получение ID инстанса/глаза на входе [1]
 };
 
 struct v2f {
@@ -69,13 +63,16 @@ struct v2f {
 		float3 viewDir : TEXCOORD2;
 	#endif
 	UNITY_FOG_COORDS(4)
+	UNITY_VERTEX_OUTPUT_STEREO // Магический макрос 2: Передача ID глаза в фрагментный шейдер [1]
 };
 
 v2f vert(appdata v)
 {
 	v2f o;
-	o.pos = UnityObjectToClipPos (v.vertex);
+	UNITY_SETUP_INSTANCE_ID(v); // Магический макрос 3: Инициализация ID инстанса [1]
+	UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o); // Магический макрос 4: Выделение памяти под стерео-выход [1]
 	
+	o.pos = UnityObjectToClipPos (v.vertex);
 
 	// scroll bump waves
 	float4 temp;
@@ -84,10 +81,11 @@ v2f vert(appdata v)
 	o.bumpuv0 = temp.xy;
 	o.bumpuv1 = temp.wz;
 	
-	// object space view direction (will normalize per pixel)
+	// object space view direction
 	o.viewDir.xzy = WorldSpaceViewDir(v.vertex);
 	
 	#if defined(HAS_REFLECTION) || defined(HAS_REFRACTION)
+	// ComputeScreenPos автоматически учитывает VR при правильных макросах выше
 	o.ref = ComputeScreenPos(o.pos);
 	#endif
 
@@ -96,16 +94,20 @@ v2f vert(appdata v)
 }
 
 #if defined (WATER_REFLECTIVE) || defined (WATER_REFRACTIVE)
-sampler2D _ReflectionTex;
+// Используем макрос для текстуры экрана, чтобы Unity автоматически применила Texture2DArray в VR
+UNITY_DECLARE_SCREENSPACE_TEXTURE(_ReflectionTex);
 #endif
+
 #if defined (WATER_REFLECTIVE) || defined (WATER_SIMPLE)
 sampler2D _ReflectiveColor;
 #endif
+
 #if defined (WATER_REFRACTIVE)
 sampler2D _Fresnel;
-sampler2D _RefractionTex;
+UNITY_DECLARE_SCREENSPACE_TEXTURE(_RefractionTex);
 uniform float4 _RefrColor;
 #endif
+
 #if defined (WATER_SIMPLE)
 uniform float4 _HorizonColor;
 #endif
@@ -113,6 +115,8 @@ sampler2D _BumpMap;
 
 half4 frag( v2f i ) : SV_Target
 {
+	UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i); // Магический макрос 5: Вычисление глаза для Single Pass Instanced [1]
+
 	i.viewDir = normalize(i.viewDir);
 	
 	// combine two scrolling bumpmaps into one
@@ -127,11 +131,15 @@ half4 frag( v2f i ) : SV_Target
 	
 	#if HAS_REFLECTION
 	float4 uv1 = i.ref; uv1.xy += bump * _ReflDistort;
-	half4 refl = tex2Dproj( _ReflectionTex, UNITY_PROJ_COORD(uv1) );
+	// Вместо tex2Dproj используем безопасный для VR макрос UNITY_SAMPLE_SCREENSPACE_TEXTURE
+	float2 projectedUV1 = uv1.xy / uv1.w;
+	half4 refl = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_ReflectionTex, projectedUV1);
 	#endif
+
 	#if HAS_REFRACTION
 	float4 uv2 = i.ref; uv2.xy -= bump * _RefrDistort;
-	half4 refr = tex2Dproj( _RefractionTex, UNITY_PROJ_COORD(uv2) ) * _RefrColor;
+	float2 projectedUV2 = uv2.xy / uv2.w;
+	half4 refr = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_RefractionTex, projectedUV2) * _RefrColor;
 	#endif
 	
 	// final color is between refracted and reflected based on fresnel
@@ -161,5 +169,4 @@ ENDCG
 
 	}
 }
-
 }

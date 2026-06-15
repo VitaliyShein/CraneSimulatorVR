@@ -12,6 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 09b6f1773914d9940814b51aab44dc64
   m_configObjects:
+    ByteDance.PICO.XR.Settings: {fileID: 11400000, guid: fd219dde0f7a9f84c8e24e41b37cb559,
+      type: 2}
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 704735882d7d75b4f813f4ef32eeb05d,
       type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: fdbc5cf3a2558234f956ad82fc4fb85e,

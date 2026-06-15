@@ -19,6 +19,7 @@ MonoBehaviour:
   - {fileID: -82459242072855696}
   - {fileID: 3163852475239711232}
   - {fileID: -2816458013643743779}
+  - {fileID: 8792055449651646285}
   - {fileID: 3046838903051624977}
   - {fileID: 5000544601501045556}
   - {fileID: 8231097430121764681}
@@ -29,6 +30,7 @@ MonoBehaviour:
   - {fileID: 2374718287347456324}
   - {fileID: -7345384594690738727}
   - {fileID: 9161009017562480532}
+  - {fileID: 1254837669109149429}
   m_renderMode: 1
   m_autoColorSubmissionMode: 1
   m_colorSubmissionModes:
@@ -110,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4891747df4d5e714f9fec69b98639e2c, type: 3}
   m_Name: PICO4UltraControllerProfile Android
   m_EditorClassIdentifier: 
-  m_enabled: 0
+  m_enabled: 1
   <failedInitialization>k__BackingField: 0
   nameUi: PICO4 Ultra Touch Controller Profile
   version: 1.0.0
@@ -161,6 +163,27 @@ MonoBehaviour:
   company: PICO
   priority: 0
   required: 0
+--- !u!114 &-6888558359734640075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e314dfef9af0904e80129bcc0a79361, type: 3}
+  m_Name: HandTracking Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Hand Tracking Subsystem
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.handtrackingsubsystem
+  openxrExtensionStrings: XR_EXT_hand_tracking
+  company: Unity
+  priority: -100
+  required: 0
+  m_AutoStartSubsystem: 1
 --- !u!114 &-6863407954443664641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,6 +303,26 @@ MonoBehaviour:
   featureIdInternal: com.pico.openxr.feature.PICO_BodyTracking
   openxrExtensionStrings: XR_BD_body_tracking XR_PICO_body_tracking2
   company: PICO
+  priority: 0
+  required: 0
+--- !u!114 &-3354440362072809765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3aced3429e5911458f4da2dac9d0f29, type: 3}
+  m_Name: MetaHandTrackingAim Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Meta Hand Tracking Aim
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.metahandtrackingaim
+  openxrExtensionStrings: XR_FB_hand_tracking_aim
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &-2816458013643743779
@@ -702,6 +745,27 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
+--- !u!114 &1254837669109149429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e314dfef9af0904e80129bcc0a79361, type: 3}
+  m_Name: HandTracking Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Hand Tracking Subsystem
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.handtrackingsubsystem
+  openxrExtensionStrings: XR_EXT_hand_tracking
+  company: Unity
+  priority: -100
+  required: 0
+  m_AutoStartSubsystem: 1
 --- !u!114 &1361633091093109342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -974,6 +1038,7 @@ MonoBehaviour:
   - {fileID: 1837091080957472101}
   - {fileID: -6863407954443664641}
   - {fileID: 1179651346296768674}
+  - {fileID: -3354440362072809765}
   - {fileID: 9180751286446170880}
   - {fileID: 17780436422007226}
   - {fileID: -8336441665946825029}
@@ -984,6 +1049,7 @@ MonoBehaviour:
   - {fileID: 6567204780520679921}
   - {fileID: -2376545094815225601}
   - {fileID: -5163502556550167216}
+  - {fileID: -6888558359734640075}
   m_renderMode: 1
   m_autoColorSubmissionMode: 1
   m_colorSubmissionModes:
@@ -1037,7 +1103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc69ec2fe7250b429391581208e2fbe, type: 3}
   m_Name: PICO4ControllerProfile Android
   m_EditorClassIdentifier: 
-  m_enabled: 0
+  m_enabled: 1
   <failedInitialization>k__BackingField: 0
   nameUi: PICO4 Touch Controller Profile
   version: 1.0.0
@@ -1118,7 +1184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9703b1b47dbc048be32403e18dcd7c, type: 3}
   m_Name: PICOG3ControllerProfile Android
   m_EditorClassIdentifier: 
-  m_enabled: 0
+  m_enabled: 1
   <failedInitialization>k__BackingField: 0
   nameUi: PICOG3 Touch Controller Profile
   version: 1.0.0
@@ -1282,7 +1348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50d1481d756df2e4093342229c33de82, type: 3}
   m_Name: PICONeo3ControllerProfile Android
   m_EditorClassIdentifier: 
-  m_enabled: 0
+  m_enabled: 1
   <failedInitialization>k__BackingField: 0
   nameUi: PICO Neo3 Touch Controller Profile
   version: 1.0.0
@@ -1358,6 +1424,26 @@ MonoBehaviour:
   featureIdInternal: com.pico.openxr.feature.scenecapture
   openxrExtensionStrings: XR_PICO_scene_capture XR_PICO_spatial_sensing XR_EXT_future
   company: PICO
+  priority: 0
+  required: 0
+--- !u!114 &8792055449651646285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3aced3429e5911458f4da2dac9d0f29, type: 3}
+  m_Name: MetaHandTrackingAim Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Meta Hand Tracking Aim
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.metahandtrackingaim
+  openxrExtensionStrings: XR_FB_hand_tracking_aim
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &9161009017562480532

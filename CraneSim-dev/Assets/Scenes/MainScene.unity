@@ -13819,6 +13819,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542555256}
   m_CullTransparentMesh: 0
+--- !u!1 &546540026 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2217327111361126255, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+    type: 3}
+  m_PrefabInstance: {fileID: 8131279071840163771}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &546540033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546540026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9c9b219ae861249b16864936f1c4ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ropeConnectScript: {fileID: 0}
+  connectButtonAction: {fileID: 0}
 --- !u!1 &547613533
 GameObject:
   m_ObjectHideFlags: 0
@@ -21001,19 +21021,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bcae914220acd4907840a029bb9d9aec, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1500
+      value: 1181.73
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bcae914220acd4907840a029bb9d9aec, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.78782
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bcae914220acd4907840a029bb9d9aec, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1500
+      value: 1181.73
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bcae914220acd4907840a029bb9d9aec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1658.2184
+      value: -1658.2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bcae914220acd4907840a029bb9d9aec, type: 3}
       propertyPath: m_LocalPosition.y
@@ -21021,7 +21041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bcae914220acd4907840a029bb9d9aec, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1152.4834
+      value: -1152.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bcae914220acd4907840a029bb9d9aec, type: 3}
       propertyPath: m_LocalRotation.w
@@ -44865,7 +44885,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2217327111361126255, guid: 0cc1cc2e479416b4dadfd32f0dfcf530,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 546540033}
   m_SourcePrefab: {fileID: 100100000, guid: 0cc1cc2e479416b4dadfd32f0dfcf530, type: 3}
 --- !u!1001 &8692288609854363175
 PrefabInstance:
@@ -44888,7 +44912,7 @@ PrefabInstance:
     - target: {fileID: 2596985348088355042, guid: 7a2e2f0f5ecfa63469a1349f237847d5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2
+      value: -0.46
       objectReference: {fileID: 0}
     - target: {fileID: 2596985348088355042, guid: 7a2e2f0f5ecfa63469a1349f237847d5,
         type: 3}
@@ -44929,6 +44953,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: XR Origin (XR Rig)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662586725296565250, guid: 7a2e2f0f5ecfa63469a1349f237847d5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

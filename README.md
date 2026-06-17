@@ -1,6 +1,6 @@
 ## How to use
 Download the release you need:
-- apk-file for offline simulator launch on a pico 4 or meta quest 2 helmet, 3
+- apk-file for offline simulator launch on a pico 4 or meta quest 2, 3
 - PC-VR for computer broadcast launch
 
 ## Как пользоваться

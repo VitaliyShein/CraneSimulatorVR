@@ -54,7 +54,7 @@
                     "name": "Secondary Button",
                     "type": "Button",
                     "id": "970b4191-957d-4a7f-ba64-e0e701950d99",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -90,7 +90,7 @@
                     "name": "Primary 2D Axis Touch",
                     "type": "Button",
                     "id": "9b069098-df41-435e-9a59-ce43682df020",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -335,6 +335,28 @@
                 },
                 {
                     "name": "",
+                    "id": "3ed9e011-699c-4133-aa46-00fb45050015",
+                    "path": "<PICO4TouchController>/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1681d169-e73b-4553-93a1-dfeba9e77631",
+                    "path": "<PICO4UltraController>/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "69ce3e33-7d81-423f-b162-7232a5791c2f",
                     "path": "<Keyboard>/n",
                     "interactions": "",
@@ -348,6 +370,28 @@
                     "name": "",
                     "id": "e7916a0d-4e13-4bdc-9328-b7a5c66fb675",
                     "path": "<XRController>{RightHand}/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0f6bab56-2ba6-40b1-b8f0-3261384737b7",
+                    "path": "<PICO4TouchController>/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "122f5f91-97bd-40c2-a3e7-1b8fca1344b7",
+                    "path": "<PICO4UltraController>/secondaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
